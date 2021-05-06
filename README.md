@@ -23,4 +23,12 @@ To run mosquitto secure we need to do a few steps
 3. create a mosquitto.conf file and add the generated certs
 4. create a docker-compose file to setup a container with a secure mosquitto broker
 
+Once keys and certs are generated and the MQTT broker runs in a docker container an easy way to test the flow is either by using mosquitto_sub/mosquitto_pub or by installing node red via docker  ```docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red``` and in the user interface add mqtt nodes with the client certs generated.
+
+### Azure IoT Hub
+
+To get started sending data to Azure IoT Hub a device need to be registered first. This can be done programmatically or in azure portal. A good suggestion to get started with is to install the[ vs code plugin](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) for IoT Hub. Azure IoT Hub can use certifications just like in the example before (self signed etc) but one of the nice things with IoT Hub is the Sas (shared access signature). For a device it is possible by making a call to an API to create device unique sas to make it possible for a device to send device specific messages to IoT Hub. This is really nice when it comes to orchestrating multiple devices and automate device orchistration. By using the vs code plugin one can generate a sas within vs code and use that to configure a device to be able to send MQTT,HTTPS and AMQP messages. IoT Hub is a bit limited in how devices can send messages. To send a pure MQTT message the main topic setup needs to follow this structure: ```devices/{deviceId}/messages/events/``` and to recieve C2D (cloud to device messages) the device need to subscribe to topics with this structure: ```devices/sthlm-lab/messages/devicebound/#``` where  ```#``` is a wildcard for all within that subtopic.
+
+### AWS IoT Core
+
 ## Part 2 -

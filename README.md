@@ -27,7 +27,15 @@ Once keys and certs are generated and the MQTT broker runs in a docker container
 
 ### Azure IoT Hub
 
-To get started sending data to Azure IoT Hub a device need to be registered first. This can be done programmatically or in azure portal. A good suggestion to get started with is to install the[ vs code plugin](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) for IoT Hub. Azure IoT Hub can use certifications just like in the example before (self signed etc) but one of the nice things with IoT Hub is the usage of SaS (shared access signature). For a device it is possible by making a call to an API to create device unique sas to make it possible for a device to send device specific messages to IoT Hub. This is really nice when it comes to orchestrating multiple devices and automate device orchistration. By using the vs code plugin one can generate a sas within vs code and use that to configure a device to be able to send MQTT,HTTPS and AMQP messages. IoT Hub is a bit limited in how devices can send messages. To send a pure MQTT message the main topic setup needs to follow this structure: ```devices/{deviceId}/messages/events/``` and to recieve C2D (cloud to device messages) the device need to subscribe to topics with this structure: ```devices/{deviceId}/messages/devicebound/#``` where  ```#``` is a wildcard for all within that subtopic.
+To get started sending data to Azure IoT Hub a device need to be registered first. This can be done programmatically or in azure portal. A good suggestion to get started with is to install the [vs code plugin](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) for IoT Hub. Azure IoT Hub can use certifications just like in the example before (self signed etc) but one of the nice things with IoT Hub is the usage of SaS (shared access signature). For a device it is possible by making a call to an API to create device unique sas to make it possible for a device to send device specific messages to IoT Hub. This is really nice when it comes to orchestrating multiple devices and automate device orchistration. By using the vs code plugin one can generate a sas within vs code and use that to configure a device to be able to send MQTT,HTTPS and AMQP messages. IoT Hub is a bit limited in how devices can send messages. To send a pure MQTT message the main topic setup needs to follow this structure: ```devices/{deviceId}/messages/events/``` and to recieve C2D (cloud to device messages) the device need to subscribe to topics with this structure: ```devices/{deviceId}/messages/devicebound/#``` where  ```#``` is a wildcard for all within that subtopic.
+
+How to connect the MQTT client to the IoT Hub:
+
+1. Set the server adress to ```sthlm-iot-showcase-dev-iot-hub.azure-devices.net``` 
+2. Set port to 8883
+3. Set the Client ID to the deviceId
+4. Set username to ```sthlm-iot-showcase-dev-iot-hub.azure-devices.net/{deviceId}/?api-version=2018-06-30```
+5. Set password to the full Shared access signature. It should look like this: ```SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697&skn=device```
 
 ### AWS IoT Core
 

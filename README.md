@@ -39,4 +39,15 @@ How to connect the MQTT client to the IoT Hub:
 
 ### AWS IoT Core
 
-## Part 2 -
+Compared to Azure, IoT Core is not using SaS. Instead it is using the same setup as in the Mosquitto SSL Configuration (minus the self-signed keys). Unlike Azure, to send sensor data to the cloud does not need specific endpoints etc unless one want to use specific IoT Core features like device shadows, job agents etc.
+
+How to connect the MQTT client to the IoT Core:
+
+1. Set the server adress to ```a2058z6ulhumcw-ats.iot.eu-north-1.amazonaws.com``` 
+2. Set port to 8883
+3. Set the Client ID to the deviceId
+4. Set Certificate to the one generated in AWS
+5. Set private key to the one generated in AWS
+6. Set CA certificate to the one generated in AWS (I do not know if this is really needed)
+
+## Part 2 - TBD

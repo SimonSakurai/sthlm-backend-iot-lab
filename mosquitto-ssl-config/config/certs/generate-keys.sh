@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SUBJECT_CA="/C=SE/ST=Stockholm/L=Stockholm/O=5imonGustafsson/OU=CA/CN=localhost"
-SUBJECT_SERVER="/C=SE/ST=Stockholm/L=Stockholm/O=5imonGustafsson/OU=Server/CN=localhost"
-SUBJECT_CLIENT="/C=SE/ST=Stockholm/L=Stockholm/O=5imonGustafsson/OU=Client/CN=localhost"
+SUBJECT_CA="/C=SE/ST=Stockholm/L=Stockholm/O=frvi/OU=CA/CN=localhost"
+SUBJECT_SERVER="/C=SE/ST=Stockholm/L=Stockholm/O=frvi/OU=Server/CN=localhost"
+SUBJECT_CLIENT="/C=SE/ST=Stockholm/L=Stockholm/O=frvi/OU=Client/CN=localhost"
 
 function generate_CA () {
    echo "$SUBJECT_CA"
@@ -31,3 +31,4 @@ generate_CA
 generate_server
 generate_client
 copy_keys_to_broker
+

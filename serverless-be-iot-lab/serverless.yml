@@ -1,0 +1,25 @@
+service: be-iot-lab
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: eu-north-1
+  versionFunctions: false
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - iot:*
+          Resource: "*"
+
+functions:
+  ping:
+    handler: ping.ping
+    events:
+      - iot:
+          sql: "SELECT *, topic(2) as client FROM 'ping/+'"
+          sqlVersion: "2016-03-23"
